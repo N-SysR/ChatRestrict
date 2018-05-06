@@ -1,7 +1,7 @@
 #include "main.hh"
 #include <err.h>
 
-std::unordered_map<std::string,int> fill_words(std::ifstream input_file)
+std::unordered_map<std::string,int> fill_words(std::ifstream &input_file)
 {
   std::string current;
   std::unordered_map<std::string,int> res;
@@ -27,6 +27,7 @@ std::unordered_map<std::string,int> fill_words(std::ifstream input_file)
 
 int main(int argv, char* argc[])
 {
+  //Checking all arguments
   if (argv != 3)
   {
     std::cerr << "Wrong number of arguments." << std::endl;
@@ -38,14 +39,14 @@ int main(int argv, char* argc[])
     std::cerr << argc[1] << " Is not a valid file" << std::endl;
     return 1;
   }
-
   std::ifstream inp_log (argc[2]);
   if (!inp_log.is_open())
   {
     std::cerr << argc[2] << " Is not a valid file" << std::endl;
     return 1;
   }
-
+  //Filling map of words
+  std::unordered_map<std::string,int> dict = fill_words(inp_dic);
 
   inp_dic.close();
   inp_log.close();
