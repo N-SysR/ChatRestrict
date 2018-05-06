@@ -25,6 +25,32 @@ std::unordered_map<std::string,int> fill_words(std::ifstream &input_file)
   return res;
 }
 
+int get_karma(std::ifstream &log,
+    std::unordered_map<std::string,int> dic, std::string play_name)
+{
+  int total_karma = 0;
+  std::string message;
+  while(getline(log,message))
+  {
+    unsigned int i = 0;
+    std::string player_name;
+    for (; message.at(i) != ':'; ++i)
+      player_name += message.at(i);
+    if (player_name == play_name)
+    {
+      for (; i < message.length(); ++i)
+      {
+        ++i;
+        for (; message.at(i) != ' '; ++i)
+        {
+        //Check messages
+        }
+    }
+
+  }
+  return 0;
+}
+
 int main(int argv, char* argc[])
 {
   //Checking all arguments
@@ -48,6 +74,16 @@ int main(int argv, char* argc[])
   //Filling map of words
   std::unordered_map<std::string,int> dict = fill_words(inp_dic);
 
+  std::string players;
+  getline(inp_log,players);
+  std::string player;
+  for (unsigned i = 0; i < players.length(); ++i)
+  {
+    player = "";
+    for (; players.at(i) != ' '; ++i)
+      player += players.at(i);
+    std::cout << get_karma(inp_log,dict,player) << std::endl;
+  }
   inp_dic.close();
   inp_log.close();
   return 0;
